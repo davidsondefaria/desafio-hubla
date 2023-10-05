@@ -1,0 +1,5 @@
+/* VSCode English Spell Checker configuration */
+{
+  "version": "0.2",
+  "ignorePaths": ["instructions.md"]
+}
