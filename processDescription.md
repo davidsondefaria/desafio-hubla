@@ -75,3 +75,7 @@ Also, created the documentation on how to install and setup the project on our
 
 The next step will be to setup TypeORM and create our first resource
 `transaction` in a new branch `transaction-feature`.
+
+## Log 2: Transaction
+
+I started adding the `transactions` resource and setting up unit and e2e tests.
