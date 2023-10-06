@@ -58,4 +58,20 @@ that can be found in [this file](tasks.md).
       3. Sign in component
 
 For now, this is what I need to start. I will create small tasks and start
-programming.
+programming. Also, I will log the steps every time that I achieve a _mental_
+milestone.
+
+## Log 1: Setup
+
+Well, I finished the setup. I used a branch named `setup-backend` and have
+created everything that I need to start to develop the project, including
+backend and frontend (_yep, forgot the branch name_).
+
+With the setup done, I could merge our branch into our `desafio` branch, which
+will be our development branch.
+
+Also, created the documentation on how to install and setup the project on our
+`README.md` file.
+
+The next step will be to setup TypeORM and create our first resource
+`transaction` in a new branch `transaction-feature`.
