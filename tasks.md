@@ -4,8 +4,8 @@
 - [ ] Setup Backend
   - [x] Start a NestJS project with Typescript
   - [x] Configure ESLint and Prettier
-  - [ ] Install TypeORM
-  - [ ] Connect TypeORM with Postgres
+  - [x] Install TypeORM
+  - [x] Connect TypeORM with Postgres
   - [ ] Create data entities with TypeORM
 - [ ] Setup Frontend
   - [x] Start a Gatsby project

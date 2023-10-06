@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import configuration, { schemaValidation } from './config/configuration';
+import { TransactionsModule } from './transactions/transactions.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -24,6 +25,7 @@ const ENV = process.env.NODE_ENV;
         return configService.get('DATABASE');
       },
     }),
+    TransactionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
