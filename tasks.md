@@ -1,14 +1,14 @@
 # Setup
 
-- [ ] Create a Postgres instance
+- [x] Create a Postgres instance
 - [ ] Setup Backend
-  - [ ] Start a NestJS project with Typescript
-  - [ ] Configure ESLint and Prettier
+  - [x] Start a NestJS project with Typescript
+  - [x] Configure ESLint and Prettier
   - [ ] Install TypeORM
   - [ ] Connect TypeORM with Postgres
   - [ ] Create data entities with TypeORM
 - [ ] Setup Frontend
-  - [ ] Start a Gatsby project
+  - [x] Start a Gatsby project
   - [ ] Configure ChakraUI
 
 # Backend
