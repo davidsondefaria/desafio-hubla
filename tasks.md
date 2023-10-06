@@ -8,7 +8,7 @@
   - [ ] Connect TypeORM with Postgres
   - [ ] Create data entities with TypeORM
 - [ ] Setup Frontend
-  - [ ] Start a Gatsby project
+  - [x] Start a Gatsby project
   - [ ] Configure ChakraUI
 
 # Backend

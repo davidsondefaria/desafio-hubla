@@ -94,4 +94,14 @@ what variables the project need to run.
 
 ## Frontend
 
-TODO
+You can found the Gatsby documentation in this
+[link](https://www.gatsbyjs.com/docs/) to learn and start a new project. But, as
+in the backend, we already started the project and you only need to install the
+dependencies using:
+
+```bash
+npm install
+npm run develop
+```
+
+With this, you are good to go to `localhost:8000`.
