@@ -1,6 +1,6 @@
 # Setup
 
-- [ ] Create a Postgres instance
+- [x] Create a Postgres instance
 - [ ] Setup Backend
   - [ ] Start a NestJS project with Typescript
   - [ ] Configure ESLint and Prettier

@@ -28,7 +28,7 @@ I'm most familiar with:
     - Unit and e2e
   - Swagger
 - Database
-  - Tools: PostgreSQL
+  - Tools: PostgreSQL and pgAdmin4
 
 ### Steps of developments
 
