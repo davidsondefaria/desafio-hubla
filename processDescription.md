@@ -78,4 +78,6 @@ The next step will be to setup TypeORM and create our first resource
 
 ## Log 2: Transaction
 
-I started adding the `transactions` resource and setting up unit and e2e tests.
+I started adding the `transactions` resource, setting up unit and e2e tests and
+creating the `Transaction` entity along with TypeORM decorators. Also, installed
+Swagger to create our API documentation.
