@@ -15,7 +15,13 @@ describe('Transaction (e2e)', () => {
     await app.init();
   });
 
-  it('/transaction (POST)', () => {
-    return request(app.getHttpServer()).post('/transactions').expect(201);
+  describe('/transaction (POST)', () => {
+    it('should accept a file and process', () => {
+      const filePath = `${__dirname}/utils/sales.txt`;
+      return request(app.getHttpServer())
+        .post('/transactions')
+        .attach('file', filePath)
+        .expect(201);
+    });
   });
 });
