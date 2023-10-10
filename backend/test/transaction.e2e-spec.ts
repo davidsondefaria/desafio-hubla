@@ -21,7 +21,14 @@ describe('Transaction (e2e)', () => {
       return request(app.getHttpServer())
         .post('/transactions')
         .attach('file', filePath)
-        .expect(201);
+        .expect(201)
+        .then(async (data) => {
+          console.log(data.body);
+        });
+    });
+
+    it('should throw 400 error if file is not attached', () => {
+      return request(app.getHttpServer()).post('/transactions').expect(400);
     });
   });
 });

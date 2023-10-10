@@ -3,8 +3,15 @@ import {
   Post,
   UseInterceptors,
   UploadedFile,
+  BadRequestException,
 } from '@nestjs/common';
-import { ApiBody, ApiConsumes, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiConsumes,
+  ApiOkResponse,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Express } from 'express';
 
@@ -27,7 +34,14 @@ export class TransactionsController {
     description: 'The file was submitted successfully',
     // type: , //TODO define this type
   })
+  @ApiResponse({
+    status: 400,
+    description: 'A file must be provided',
+  })
   readTransactionsFile(@UploadedFile() file: Express.Multer.File) {
-    return this.transactionsService.transformBuffer(file.buffer);
+    if (file && file.buffer) {
+      return this.transactionsService.transformBuffer(file.buffer);
+    }
+    throw new BadRequestException('A file must be provided!');
   }
 }
