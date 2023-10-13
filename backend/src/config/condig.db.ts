@@ -6,6 +6,9 @@ dotenv.config();
 
 export const getTypeOrmConfig = (): TypeOrmModuleOptions => {
   const type: any = process.env.DATABASE_TYPE as DatabaseType;
+  const entities = process.env.ENTITIES;
+  const entitiesPath =
+    process.env.NODE_ENV === 'test' ? __dirname + entities : entities;
 
   return {
     type,
@@ -17,7 +20,7 @@ export const getTypeOrmConfig = (): TypeOrmModuleOptions => {
 
     // logging: true,
 
-    entities: [process.env.ENTITIES],
+    entities: [entitiesPath],
 
     migrationsTableName: process.env.MIGRATIONS_TABLE_NAME,
 

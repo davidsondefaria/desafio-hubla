@@ -1,18 +1,35 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
+
 import { AppModule } from './../src/app.module';
+import { TransactionsService } from './../src/transactions/transactions.service';
+import { TestService } from './utils/test.service';
+import { TestModule } from './utils/test.module';
 
 describe('Transaction (e2e)', () => {
   let app: INestApplication;
 
+  let transactionsService: TransactionsService;
+  let testService: TestService;
+
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
+      providers: [TestService],
     }).compile();
 
     app = moduleFixture.createNestApplication();
     await app.init();
+
+    transactionsService =
+      moduleFixture.get<TransactionsService>(TransactionsService);
+    testService = moduleFixture.get<TestService>(TestService);
+  });
+
+  afterAll(async () => {
+    await testService.cleanDatabase();
+    await app.close();
   });
 
   describe('/transaction (POST)', () => {
@@ -23,7 +40,7 @@ describe('Transaction (e2e)', () => {
         .attach('file', filePath)
         .expect(201)
         .then(async (data) => {
-          console.log(data.body);
+          // TODO
         });
     });
 

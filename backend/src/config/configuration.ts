@@ -27,11 +27,11 @@ export const schemaValidation = Joi.object({
   PORT: Joi.number().default(3000),
 
   // Databases
-  DATABASE_HOST: emptyIn('test'),
-  DATABASE_PORT: emptyIn('test'),
-  DATABASE_USERNAME: emptyIn('test'),
-  DATABASE_PASSWORD: emptyIn('test'),
-  DATABASE_NAME: emptyIn('test'),
+  DATABASE_HOST: Joi.string().required(),
+  DATABASE_PORT: Joi.string().required(),
+  DATABASE_USERNAME: Joi.string().required(),
+  DATABASE_PASSWORD: Joi.string().required(),
+  DATABASE_NAME: Joi.string().required(),
   DATABASE_TYPE: Joi.string().required(),
 
   // TypeORM
