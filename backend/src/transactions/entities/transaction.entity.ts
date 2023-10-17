@@ -18,7 +18,7 @@ export class Transaction extends BaseEntity {
   type: number; // TODO create a TransactionType
 
   @Column({ nullable: false })
-  date: string; // TODO Deal this as Date
+  date: Date;
 
   @Column({ nullable: false })
   product: string;

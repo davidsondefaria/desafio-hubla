@@ -16,7 +16,8 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Express } from 'express';
 
 import { TransactionsService } from './transactions.service';
-import { FileUploadDto } from './dto/file-transaction-upload.dt';
+import { FileUploadDto } from './dto/file-transaction-upload.dto';
+import { Transaction } from './entities/transaction.entity';
 
 @Controller('transactions')
 @ApiTags('Transactions')
@@ -38,9 +39,11 @@ export class TransactionsController {
     status: 400,
     description: 'A file must be provided',
   })
-  readTransactionsFile(@UploadedFile() file: Express.Multer.File) {
+  readTransactionsFile(
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<Transaction[]> {
     if (file && file.buffer) {
-      return this.transactionsService.transformBuffer(file.buffer);
+      return this.transactionsService.processTransactions(file.buffer);
     }
     throw new BadRequestException('A file must be provided!');
   }

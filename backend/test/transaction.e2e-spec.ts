@@ -40,10 +40,9 @@ describe('Transaction (e2e)', () => {
         .attach('file', filePath)
         .expect(201)
         .then(async ({ body }) => {
-          console.log(body);
           expect(body.length).toBe(1);
-          // const transactions = await transactionsService.findTransactions();
-          // expect(transactions[0].product).toBe('CURSO DE BEM-ESTAR');
+          const transactions = await transactionsService.findTransactions();
+          expect(transactions[0].product).toBe('CURSO DE BEM-ESTAR');
         });
     });
 
