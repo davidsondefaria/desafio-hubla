@@ -90,10 +90,10 @@ describe('Transaction (e2e)', () => {
         LIMIT 1
       `);
       return request(app.getHttpServer())
-        .get(`/transactions/${transaction.id}`)
+        .get(`/transactions/${transaction[0].id}`)
         .expect(200)
         .then(async ({ body }) => {
-          expect(body.id).toBe(transaction.id);
+          expect(body.id).toBe(transaction[0].id);
         });
     });
     it('should throw 404 when ID does not exists', () => {

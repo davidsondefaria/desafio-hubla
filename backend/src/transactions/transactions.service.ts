@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Transaction } from './entities/transaction.entity';
 import { In, Repository } from 'typeorm';
@@ -78,5 +78,13 @@ export class TransactionsService {
         skip,
       },
     );
+  }
+
+  async getTransaction(id: string): Promise<Transaction> {
+    try {
+      return await this.transactionsRepository.findOneByOrFail({ id });
+    } catch (e) {
+      throw new NotFoundException(`Transaction could not be found: ${id}`);
+    }
   }
 }

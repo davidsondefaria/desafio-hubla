@@ -6,6 +6,7 @@ import {
   BadRequestException,
   Get,
   Query,
+  Param,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -60,5 +61,14 @@ export class TransactionsController {
   @PaginateQueryOptions()
   getTransactions(@Query() query: PaginateQuery): Promise<Transaction[]> {
     return this.transactionsService.getTransactions(query);
+  }
+
+  @Get('/:id')
+  @ApiOkResponse({
+    description: 'A transaction has been successfully fetched',
+    type: Transaction,
+  })
+  getTransaction(@Param('id') id: string): Promise<Transaction> {
+    return this.transactionsService.getTransaction(id);
   }
 }
