@@ -34,13 +34,16 @@ describe('Transaction (e2e)', () => {
 
   describe('/transaction (POST)', () => {
     it('should accept a file and process', () => {
-      const filePath = `${__dirname}/utils/sales.txt`;
+      const filePath = `${__dirname}/utils/test.sales.txt`;
       return request(app.getHttpServer())
         .post('/transactions')
         .attach('file', filePath)
         .expect(201)
-        .then(async (data) => {
-          // TODO
+        .then(async ({ body }) => {
+          console.log(body);
+          expect(body.length).toBe(1);
+          // const transactions = await transactionsService.findTransactions();
+          // expect(transactions[0].product).toBe('CURSO DE BEM-ESTAR');
         });
     });
 
