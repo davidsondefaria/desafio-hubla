@@ -4,6 +4,8 @@ import {
   UseInterceptors,
   UploadedFile,
   BadRequestException,
+  Get,
+  Query,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -18,6 +20,8 @@ import { Express } from 'express';
 import { TransactionsService } from './transactions.service';
 import { FileUploadDto } from './dto/file-transaction-upload.dto';
 import { Transaction } from './entities/transaction.entity';
+import { PaginateQueryOptions } from '../@decorators/paginateQuery.decorator';
+import { PaginateQuery } from 'src/@helpers/pagination';
 
 @Controller('transactions')
 @ApiTags('Transactions')
@@ -33,7 +37,7 @@ export class TransactionsController {
   })
   @ApiOkResponse({
     description: 'The file was submitted successfully',
-    // type: , //TODO define this type
+    type: Transaction,
   })
   @ApiResponse({
     status: 400,
@@ -46,5 +50,15 @@ export class TransactionsController {
       return this.transactionsService.processTransactions(file.buffer);
     }
     throw new BadRequestException('A file must be provided!');
+  }
+
+  @Get()
+  @ApiOkResponse({
+    description: 'A list of transactions has been successfully fetched',
+    type: Transaction,
+  })
+  @PaginateQueryOptions()
+  getTransactions(@Query() query: PaginateQuery): Promise<Transaction[]> {
+    return this.transactionsService.getTransactions(query);
   }
 }

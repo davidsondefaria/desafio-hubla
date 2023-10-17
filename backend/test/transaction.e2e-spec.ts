@@ -52,12 +52,12 @@ describe('Transaction (e2e)', () => {
   });
 
   describe('/transaction (GET)', () => {
-    it('should get all transactions', () => {
+    it('should get transactions using default limit (10)', () => {
       return request(app.getHttpServer())
         .get('/transactions')
         .expect(200)
         .then(async ({ body }) => {
-          expect(body.length).toBe(20);
+          expect(body.length).toBe(10);
         });
     });
 
@@ -74,11 +74,11 @@ describe('Transaction (e2e)', () => {
         .then(async ({ body }) => {
           expect(body.length).toBe(limit);
           const transactions = await testService.runQuery(`
-            SELECT * FROM Transactions
+            SELECT id FROM Transactions
             ORDER BY ${sort} ${order}
             LIMIT ${limit} OFFSET 5
           `);
-          expect(body).toStrictEqual(transactions);
+          expect(body.map(({ id }) => ({ id }))).toStrictEqual(transactions);
         });
     });
   });

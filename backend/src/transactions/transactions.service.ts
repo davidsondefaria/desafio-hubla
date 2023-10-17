@@ -1,16 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Transaction } from './entities/transaction.entity';
-import { DataSource, In, Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
+import { PaginateQuery, getDefaultPagination } from '../@helpers/pagination';
 
 @Injectable()
 export class TransactionsService {
   constructor(
     @InjectRepository(Transaction)
     private readonly transactionsRepository: Repository<Transaction>,
-    @InjectDataSource()
-    private dataSource: DataSource,
   ) {}
 
   async processTransactions(
@@ -41,7 +40,7 @@ export class TransactionsService {
   }
 
   async createMany(transactions: CreateTransactionDto[]): Promise<any> {
-    const res = await this.dataSource
+    const res = await this.transactionsRepository
       .createQueryBuilder()
       .insert()
       .into(Transaction)
@@ -54,10 +53,30 @@ export class TransactionsService {
     return await this.findTransactions({ id: In(ids) });
   }
 
-  async findTransactions(where?: {
-    [key: string]: any;
-  }): Promise<Transaction[]> {
-    const transactions = await this.transactionsRepository.find({ where });
+  async findTransactions(
+    where?: {
+      [key: string]: any;
+    },
+    options?: any,
+  ): Promise<Transaction[]> {
+    const transactions = await this.transactionsRepository.find({
+      where,
+      ...options,
+    });
     return transactions;
+  }
+
+  async getTransactions(_query: PaginateQuery): Promise<Transaction[]> {
+    const query = getDefaultPagination(_query);
+    const { page, limit, sortBy } = query;
+    const skip = page === 1 ? 0 : (page - 1) * limit;
+    return this.findTransactions(
+      {},
+      {
+        ...(sortBy && { order: { [sortBy.field]: sortBy.by } }),
+        take: limit,
+        skip,
+      },
+    );
   }
 }
