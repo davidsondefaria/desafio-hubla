@@ -50,4 +50,36 @@ describe('Transaction (e2e)', () => {
       return request(app.getHttpServer()).post('/transactions').expect(400);
     });
   });
+
+  describe('/transaction (GET)', () => {
+    it('should get all transactions', () => {
+      return request(app.getHttpServer())
+        .get('/transactions')
+        .expect(200)
+        .then(async ({ body }) => {
+          expect(body.length).toBe(20);
+        });
+    });
+
+    it('should paginate, order and limit', () => {
+      const page = 2;
+      const limit = 5;
+      const sort = 'date';
+      const order = 'asc';
+      return request(app.getHttpServer())
+        .get(
+          `/transactions?page=${page}&limit=${limit}&sortBy=${sort}:${order}`,
+        )
+        .expect(200)
+        .then(async ({ body }) => {
+          expect(body.length).toBe(limit);
+          const transactions = await testService.runQuery(`
+            SELECT * FROM Transactions
+            ORDER BY ${sort} ${order}
+            LIMIT ${limit} OFFSET 5
+          `);
+          expect(body).toStrictEqual(transactions);
+        });
+    });
+  });
 });

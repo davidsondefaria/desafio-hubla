@@ -27,4 +27,8 @@ export class TestService {
   async getDataFrom(table: string): Promise<any> {
     return this.dataSource.query(`SELECT * FROM ${table}`);
   }
+
+  async runQuery(query: string): Promise<any> {
+    return this.dataSource.query(query);
+  }
 }
