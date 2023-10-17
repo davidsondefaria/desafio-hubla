@@ -82,4 +82,24 @@ describe('Transaction (e2e)', () => {
         });
     });
   });
+
+  describe('/transaction/:id (GET)', () => {
+    it('should get one transaction by ID', async () => {
+      const transaction = await testService.runQuery(`
+        SELECT id FROM Transactions
+        LIMIT 1
+      `);
+      return request(app.getHttpServer())
+        .get(`/transactions/${transaction.id}`)
+        .expect(200)
+        .then(async ({ body }) => {
+          expect(body.id).toBe(transaction.id);
+        });
+    });
+    it('should throw 404 when ID does not exists', () => {
+      return request(app.getHttpServer())
+        .get(`/transactions/not-id`)
+        .expect(404);
+    });
+  });
 });
