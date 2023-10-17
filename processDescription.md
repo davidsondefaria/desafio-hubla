@@ -82,3 +82,14 @@ I started adding the `transactions` resource, setting up unit and e2e tests and
 creating the `Transaction` entity along with TypeORM decorators. Also, installed
 Swagger to create our API documentation. I made some progress changing and
 defining types and upgrading our API doc.
+
+Although I chose TDD as development practice for this project, I started only
+with e2e tests. So, I have created an environment to use a real database and
+configured to use with TypeORM. With this config, the necessity of an test
+service appeared to clean database and maybe it can be useful to create some
+test queries too.
+
+For our first endpoint, I have created two tests: one to match the perfect
+condition and another to deal with bad requests. With these tests in hand, I
+could finish the service dealing with file buffer, data transformation and bulk
+insertion.
