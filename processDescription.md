@@ -93,3 +93,7 @@ For our first endpoint, I have created two tests: one to match the perfect
 condition and another to deal with bad requests. With these tests in hand, I
 could finish the service dealing with file buffer, data transformation and bulk
 insertion.
+
+For the get endpoint, I have created a custom pagination by choice, instead
+using from a NestJS or an external package and I made use of some decorators to
+create a good API doc information.
