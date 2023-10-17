@@ -102,4 +102,12 @@ After finishing the get one transaction by id endpoint, all main backend
 features from transaction resource are done. I just need to create unit tests
 for the methods, but I will back on this task later.
 
-## Log 3: Authentication
+## Log 3: Auth
+
+I started a new branch `auth-feature` to create everything about authentication
+and authorization. I created the resource and wrote the sign in e2e test. In
+this moment, I'm still wondering about login, if I use a body with plain email
+and password, or email and a hashed password, or use a jwt. Plain email and
+password are bad for security, but it's simple; In the other side, hashed
+password or jwt are good for security, but maybe it's a premature optimization,
+since I still didn't planned the auth in the front end side.
