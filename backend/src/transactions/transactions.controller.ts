@@ -63,7 +63,7 @@ export class TransactionsController {
     return this.transactionsService.getTransactions(query);
   }
 
-  @Get('/:id')
+  @Get(':id')
   @ApiOkResponse({
     description: 'A transaction has been successfully fetched',
     type: Transaction,

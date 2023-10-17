@@ -97,3 +97,9 @@ insertion.
 For the get endpoint, I have created a custom pagination by choice, instead
 using from a NestJS or an external package and I made use of some decorators to
 create a good API doc information.
+
+After finishing the get one transaction by id endpoint, all main backend
+features from transaction resource are done. I just need to create unit tests
+for the methods, but I will back on this task later.
+
+## Log 3: Authentication

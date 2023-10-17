@@ -18,10 +18,10 @@
   - [x] POST: Create an endpoint that receive a file and call for a parser
   - [ ] Unit Parser: Create the method test
   - [x] Parser method: Create the parser method
-  - [ ] e2e GET: Create the endpoint test
-  - [ ] GET: Create and endpoint to list all transactions
+  - [x] e2e GET: Create the endpoint test
+  - [x] GET: Create and endpoint to list all transactions
   - [ ] Unit List method: Create the unit test to get methods
-  - [ ] List method: Create a method to get all transactions
+  - [x] List method: Create a method to get all transactions
 - [ ] Login resource
   - TODO
 
