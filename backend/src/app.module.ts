@@ -8,6 +8,7 @@ import { AppService } from './app.service';
 import configuration, { schemaValidation } from './config/configuration';
 import { TransactionsModule } from './transactions/transactions.module';
 import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -28,6 +29,7 @@ const ENV = process.env.NODE_ENV;
     }),
     TransactionsModule,
     AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

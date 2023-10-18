@@ -17,7 +17,7 @@ export class TestService {
         .join(', ');
       // console.log('tests entities', tableNames);
 
-      await this.dataSource.query(`DELETE FROM ${tableNames};`);
+      await this.dataSource.query(`TRUNCATE ${tableNames} CASCADE;`);
       // console.log('[TEST DATABASE]: Clean');
     } catch (error) {
       throw new Error(`ERROR: Cleaning test database: ${error}`);

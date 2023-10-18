@@ -40,11 +40,17 @@ export const schemaValidation = Joi.object({
   ENTITIES: Joi.string().required(),
   MIGRATIONS_TABLE_NAME: Joi.string().required(),
   MIGRATIONS: Joi.string().required(),
+
+  // JWT
+  JWT_SECRET: Joi.string().required(),
 });
 
 export default () => {
   return {
     NODE_ENV: process.env.NODE_ENV,
+    JWT: {
+      SECRET: process.env.JWT_SECRET,
+    },
     DATABASE: getTypeOrmConfig(),
   };
 };

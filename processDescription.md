@@ -111,3 +111,12 @@ and password, or email and a hashed password, or use a jwt. Plain email and
 password are bad for security, but it's simple; In the other side, hashed
 password or jwt are good for security, but maybe it's a premature optimization,
 since I still didn't planned the auth in the front end side.
+
+While developing auth endpoints, I realized the necessity of an User resource to
+split the auth context and user context. The auth resource needs only to control
+authentication and authorization, but it will use user service to write and read
+users from database.
+
+This new resource will also come in handy if there is a need of user control,
+but, for now, I will only be using to access users though auth, so there is no
+need for a controller for now.

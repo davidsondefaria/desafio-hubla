@@ -12,7 +12,7 @@ describe('Auth (e2e)', () => {
   let authService: AuthService;
   let testService: TestService;
 
-  const email = 'email@domain.com';
+  const email = 'test-e2e@email.com';
   const password = 'password123';
 
   beforeEach(async () => {
@@ -39,14 +39,15 @@ describe('Auth (e2e)', () => {
       .send({ email, password })
       .expect(201)
       .then(async ({ body }) => {
+        expect(body.success).toBe(true);
         expect(body.message).toBe('You have been successfully registered!');
 
         const user = await testService.runQuery(`
-          SELECT * from Users
-          WHERE email = ${email}
+          SELECT * FROM Users
+          WHERE email = '${email}'
         `);
 
-        expect(user.email).toBe(email);
+        expect(user[0].email).toBe(email);
       });
   });
 
