@@ -120,3 +120,8 @@ users from database.
 This new resource will also come in handy if there is a need of user control,
 but, for now, I will only be using to access users though auth, so there is no
 need for a controller for now.
+
+As I said before, I implemented a new User resource while implementing Auth
+feature. So now, auth service only has methods related to password hash and jwt,
+which I will use later in a middleware. And for now, I will implement login
+using just a plain email and password to make it simple.

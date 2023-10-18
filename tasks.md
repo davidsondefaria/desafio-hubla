@@ -24,7 +24,7 @@
   - [x] List method: Create a method to get all transactions
 - [ ] Auth resource
   - [x] e2e POST: Sign in
-  - [ ] POST: Sign in
+  - [x] POST: Sign in
   - [ ] e2e POST: Log in
   - [ ] POST: Log in
   - [ ] e2e GET: Log out
