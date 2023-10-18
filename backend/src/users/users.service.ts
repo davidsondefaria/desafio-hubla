@@ -12,7 +12,7 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async createUser(user: CreateUserDto): Promise<Partial<User>> {
+  async createUser(user: CreateUserDto): Promise<User> {
     const existUser = await this.userRepository.findOneBy({
       email: user.email,
     });
@@ -23,5 +23,11 @@ export class UsersService {
     const savedUser = await this.userRepository.save(createdUser);
     delete savedUser.password;
     return savedUser;
+  }
+
+  async findByEmail(email: string): Promise<User> {
+    return await this.userRepository.findOneBy({
+      email,
+    });
   }
 }

@@ -62,7 +62,7 @@ describe('Auth (e2e)', () => {
     return request(app.getHttpServer())
       .post('/auth')
       .send({ email, password })
-      .expect(200)
+      .expect(201)
       .then(({ body }) => {
         expect(body.success).toBe(true);
         expect(body.message).toBe('You have been successfully logged!');
