@@ -135,3 +135,11 @@ before finish the middleware, since maybe I will have to refactor some code.
 
 In order to make it simple, I will only create a page with a table, an insert
 button and a header, and maintain the style really simple, but not _ugly_.
+
+I have started the page development installing some dependencies that I will
+use, setting up ChakraUI and creating the Header component. In this time, I
+realized that my frontend fold have been considered as submodule all this time,
+so, some commit have been lost. I changed the folder name to
+`frontend-transaciton` and removed the old submodule. This problem happened
+because I first started the project with a `.git` inside the frontend folder (I
+forgot to remove when installed Gatsby).

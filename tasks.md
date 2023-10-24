@@ -34,7 +34,7 @@
 # Frontend
 
 - [ ] Transaction Page
-  - [ ] Header
+  - [x] Header
   - [ ] Footer
   - [ ] Transaction List
   - [ ] Form to add file
