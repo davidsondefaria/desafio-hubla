@@ -5,7 +5,6 @@ import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 import { TransactionsService } from './../src/transactions/transactions.service';
 import { TestService } from './utils/test.service';
-import { TestModule } from './utils/test.module';
 
 describe('Transaction (e2e)', () => {
   let app: INestApplication;
