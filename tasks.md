@@ -25,16 +25,19 @@
 - [ ] Auth resource
   - [x] e2e POST: Sign in
   - [x] POST: Sign in
-  - [ ] e2e POST: Log in
-  - [ ] POST: Log in
-  - [ ] e2e GET: Log out
-  - [ ] GET: Log out
+  - [x] e2e POST: Log in
+  - [x] POST: Log in
+  - [x] e2e GET: Log out
   - [ ] Auth middleware to access Transactions
   - [ ] Adapt e2e and transaction resource to auth access
 
 # Frontend
 
-- TODO
+- [ ] Transaction Page
+  - [ ] Header
+  - [ ] Footer
+  - [ ] Transaction List
+  - [ ] Form to add file
 
 Links:
 

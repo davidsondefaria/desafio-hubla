@@ -125,3 +125,13 @@ As I said before, I implemented a new User resource while implementing Auth
 feature. So now, auth service only has methods related to password hash and jwt,
 which I will use later in a middleware. And for now, I will implement login
 using just a plain email and password to make it simple.
+
+I finished to implement login so I can return a valid JWT, store in the Frontend
+(browser), and use it to check authorization via middlewares. Also, I realized
+that I don't need a logout endpoint. And decided to start the Transaction Page
+before finish the middleware, since maybe I will have to refactor some code.
+
+## Log 4: Transaction Page
+
+In order to make it simple, I will only create a page with a table, an insert
+button and a header, and maintain the style really simple, but not _ugly_.
