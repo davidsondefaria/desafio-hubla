@@ -22,8 +22,15 @@
   - [x] GET: Create and endpoint to list all transactions
   - [ ] Unit List method: Create the unit test to get methods
   - [x] List method: Create a method to get all transactions
-- [ ] Login resource
-  - TODO
+- [ ] Auth resource
+  - [x] e2e POST: Sign in
+  - [x] POST: Sign in
+  - [ ] e2e POST: Log in
+  - [ ] POST: Log in
+  - [ ] e2e GET: Log out
+  - [ ] GET: Log out
+  - [ ] Auth middleware to access Transactions
+  - [ ] Adapt e2e and transaction resource to auth access
 
 # Frontend
 
