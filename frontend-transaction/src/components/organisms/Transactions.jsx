@@ -37,7 +37,7 @@ const columns = [
 
 const Transactions = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["transactions"],
     queryFn: async () => {
       const response = await fetch(
@@ -47,7 +47,10 @@ const Transactions = () => {
     },
   });
 
-  console.log(data, isLoading, isError, error);
+  const closeModalAndRefetch = () => {
+    setModalOpen(false);
+    refetch();
+  };
 
   return (
     <Box p={4} m={10}>
@@ -56,7 +59,7 @@ const Transactions = () => {
           Insira o arquivo de Transações
         </Button>
       </Flex>
-      <UploadModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
+      <UploadModal isOpen={isModalOpen} onClose={closeModalAndRefetch} />
       {isError && "An error occurred fetching Transactions"}
       {isLoading
         ? "Loading..."

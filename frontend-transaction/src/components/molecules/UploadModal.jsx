@@ -28,7 +28,7 @@ const UploadModal = ({ isOpen, onClose }) => {
         console.log(response.status);
         throw new Error("Algo deu errado");
       }
-      console.log(response.json());
+      onClose();
       return response.json();
     },
   });
