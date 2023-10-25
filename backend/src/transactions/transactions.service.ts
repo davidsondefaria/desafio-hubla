@@ -4,6 +4,7 @@ import { Transaction } from './entities/transaction.entity';
 import { In, Repository } from 'typeorm';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { PaginateQuery, getDefaultPagination } from '../@helpers/pagination';
+import { PaginatedTransactionDto } from './dto/paginated-transaction.dto';
 
 @Injectable()
 export class TransactionsService {
@@ -39,7 +40,9 @@ export class TransactionsService {
     return transactions;
   }
 
-  async createMany(transactions: CreateTransactionDto[]): Promise<any> {
+  async createMany(
+    transactions: CreateTransactionDto[],
+  ): Promise<Transaction[]> {
     const res = await this.transactionsRepository
       .createQueryBuilder()
       .insert()
@@ -50,7 +53,8 @@ export class TransactionsService {
       })
       .execute();
     const ids: string[] = res.raw.map(({ id }) => id);
-    return await this.findTransactions({ id: In(ids) });
+    const [data, _total] = await this.findTransactions({ id: In(ids) });
+    return data;
   }
 
   async findTransactions(
@@ -58,27 +62,36 @@ export class TransactionsService {
       [key: string]: any;
     },
     options?: any,
-  ): Promise<Transaction[]> {
-    const transactions = await this.transactionsRepository.find({
+  ): Promise<[Transaction[], number]> {
+    const transactions = await this.transactionsRepository.findAndCount({
       where,
       ...options,
     });
     return transactions;
   }
 
-  async getTransactions(_query: PaginateQuery): Promise<Transaction[]> {
+  async getTransactions(
+    _query: PaginateQuery,
+  ): Promise<PaginatedTransactionDto> {
     const query = getDefaultPagination(_query);
     const { page, limit, sortBy } = query;
     const skip = page === 1 ? 0 : (page - 1) * limit;
-    const transactions = await this.findTransactions(
-      {},
-      {
-        ...(sortBy && { order: { [sortBy.field]: sortBy.by } }),
-        take: limit,
-        skip,
-      },
-    );
-    return transactions;
+    const [transactions, total]: [Transaction[], number] =
+      await this.findTransactions(
+        {},
+        {
+          ...(sortBy && { order: { [sortBy.field]: sortBy.by } }),
+          take: limit,
+          skip,
+        },
+      );
+    console.log(total, limit, Math.ceil(total / limit), transactions);
+    return {
+      page,
+      pageSize: limit,
+      totalPages: Math.ceil(total / limit),
+      data: transactions,
+    };
   }
 
   async getTransaction(id: string): Promise<Transaction> {

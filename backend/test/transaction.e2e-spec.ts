@@ -40,7 +40,7 @@ describe('Transaction (e2e)', () => {
         .expect(201)
         .then(async ({ body }) => {
           expect(body.length).toBe(20);
-          const transactions = await transactionsService.findTransactions();
+          const [transactions] = await transactionsService.findTransactions();
           expect(transactions.length).toBe(20);
         });
     });
@@ -55,8 +55,11 @@ describe('Transaction (e2e)', () => {
       return request(app.getHttpServer())
         .get('/transactions')
         .expect(200)
-        .then(async ({ body }) => {
-          expect(body.length).toBe(10);
+        .then(async ({ body: { page, pageSize, totalPages, data } }) => {
+          expect(page).toBe(1);
+          expect(pageSize).toBe(10);
+          expect(totalPages).toBe(2);
+          expect(data.length).toBe(10);
         });
     });
 
@@ -71,13 +74,17 @@ describe('Transaction (e2e)', () => {
         )
         .expect(200)
         .then(async ({ body }) => {
-          expect(body.length).toBe(limit);
+          expect(body.page).toBe(page);
+          expect(body.pageSize).toBe(limit);
+          expect(body.totalPages).toBe(4);
           const transactions = await testService.runQuery(`
             SELECT id FROM Transactions
             ORDER BY ${sort} ${order}
             LIMIT ${limit} OFFSET 5
           `);
-          expect(body.map(({ id }) => ({ id }))).toStrictEqual(transactions);
+          expect(body.data.map(({ id }) => ({ id }))).toStrictEqual(
+            transactions,
+          );
         });
     });
   });
