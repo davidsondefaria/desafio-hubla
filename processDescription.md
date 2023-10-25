@@ -140,6 +140,11 @@ I have started the page development installing some dependencies that I will
 use, setting up ChakraUI and creating the Header component. In this time, I
 realized that my frontend fold have been considered as submodule all this time,
 so, some commit have been lost. I changed the folder name to
-`frontend-transaciton` and removed the old submodule. This problem happened
+`frontend-transaction` and removed the old submodule. This problem happened
 because I first started the project with a `.git` inside the frontend folder (I
 forgot to remove when installed Gatsby).
+
+I finished the Transaction page after create a modal to insert a file, a table
+to show data and some buttons to control pagination. Also, in the meantime, I
+had to refactor the GET transactions endpoint to make pagination more
+consistent.

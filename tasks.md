@@ -33,11 +33,10 @@
 
 # Frontend
 
-- [ ] Transaction Page
+- [x] Transaction Page
   - [x] Header
-  - [ ] Footer
-  - [ ] Transaction List
-  - [ ] Form to add file
+  - [x] Transaction List
+  - [x] Form to add file
 
 Links:
 
