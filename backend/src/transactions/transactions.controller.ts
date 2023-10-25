@@ -23,6 +23,7 @@ import { FileUploadDto } from './dto/file-transaction-upload.dto';
 import { Transaction } from './entities/transaction.entity';
 import { PaginateQueryOptions } from '../@decorators/paginateQuery.decorator';
 import { PaginateQuery } from 'src/@helpers/pagination';
+import { PaginatedTransactionDto } from './dto/paginated-transaction.dto';
 
 @Controller('transactions')
 @ApiTags('Transactions')
@@ -59,7 +60,9 @@ export class TransactionsController {
     type: Transaction,
   })
   @PaginateQueryOptions()
-  getTransactions(@Query() query: PaginateQuery): Promise<Transaction[]> {
+  getTransactions(
+    @Query() query: PaginateQuery,
+  ): Promise<PaginatedTransactionDto> {
     return this.transactionsService.getTransactions(query);
   }
 
