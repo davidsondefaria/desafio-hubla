@@ -28,7 +28,6 @@ const Table = ({
   setCurrentPage,
   setRecordsPerPage,
 }) => {
-  console.log(currentPage, totalPages, recordsPerPage);
   const table = useReactTable({
     data,
     columns,
