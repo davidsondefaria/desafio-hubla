@@ -70,7 +70,7 @@ export class TransactionsService {
     const query = getDefaultPagination(_query);
     const { page, limit, sortBy } = query;
     const skip = page === 1 ? 0 : (page - 1) * limit;
-    return this.findTransactions(
+    const transactions = await this.findTransactions(
       {},
       {
         ...(sortBy && { order: { [sortBy.field]: sortBy.by } }),
@@ -78,6 +78,7 @@ export class TransactionsService {
         skip,
       },
     );
+    return transactions;
   }
 
   async getTransaction(id: string): Promise<Transaction> {
