@@ -53,7 +53,7 @@ export class TransactionsService {
       })
       .execute();
     const ids: string[] = res.raw.map(({ id }) => id);
-    const [data, _total] = await this.findTransactions({ id: In(ids) });
+    const [data] = await this.findTransactions({ id: In(ids) });
     return data;
   }
 
@@ -85,7 +85,6 @@ export class TransactionsService {
           skip,
         },
       );
-    console.log(total, limit, Math.ceil(total / limit), transactions);
     return {
       page,
       pageSize: limit,

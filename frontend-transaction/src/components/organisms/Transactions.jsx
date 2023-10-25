@@ -37,11 +37,13 @@ const columns = [
 
 const Transactions = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const { data, isLoading, isError, error, refetch } = useQuery({
-    queryKey: ["transactions"],
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage, setRecordsPerPage] = useState(10);
+  const { data, isLoading, isError, refetch } = useQuery({
+    queryKey: ["transactions", currentPage, recordsPerPage],
     queryFn: async () => {
       const response = await fetch(
-        `${process.env.GATSBY_API_URL}/transactions`
+        `${process.env.GATSBY_API_URL}/transactions?page=${currentPage}&limit=${recordsPerPage}`
       );
       return response.json();
     },
@@ -63,7 +65,17 @@ const Transactions = () => {
       {isError && "An error occurred fetching Transactions"}
       {isLoading
         ? "Loading..."
-        : !isError && <Table data={data || []} columns={columns} />}
+        : !isError && (
+            <Table
+              data={data.data || []}
+              columns={columns}
+              currentPage={currentPage}
+              totalPages={data.totalPages}
+              recordsPerPage={recordsPerPage}
+              setCurrentPage={setCurrentPage}
+              setRecordsPerPage={setRecordsPerPage}
+            />
+          )}
     </Box>
   );
 };
